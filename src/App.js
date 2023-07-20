@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const initialvalues={name:"",account:"",ifsc:'',branch:'',mobile:''};
+  const [formValues,serformValues]=useState(initialvalues);
+  const [formErrors,setformErrors]=useState({});
+
+  const HandleChange=(e)=>{
+    const {name,value}=e.target;
+    serformValues({...formValues,[name]:value});
+    console.log(formValues);
+  }
+
+  return(
+      <div>
+        <h2>REGISTERATION</h2>
+        <div>
+          <input type='text'placeholder='Enter the name' value={formValues.name} onChange={HandleChange}/>
+        </div>
+      </div>
+  )
+  
+
 }
+
 
 export default App;
